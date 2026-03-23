@@ -1,9 +1,12 @@
-# 🛡️ FreelanceProof
+# 🛡️ FreelanceProof (Hackathon Submission)
 
-> **Your GitHub is Your Passport.** A full-stack freelancer verification platform that helps African freelancers prove their legitimacy to fintechs like Raenest. 
+> **"Your GitHub is Your Passport."** A full-stack verification platform empowering African freelancers to prove their professional legitimacy to fintechs, securely bypassing Enhanced Due Diligence (EDD) freezes.
+
+🚀 **Live Demo:** [https://freelance-proof.vercel.app](https://freelance-proof.vercel.app)
+⚙️ **Live API:** [https://freelance-proof.onrender.com](https://freelance-proof.onrender.com)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-16+-green.svg)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC.svg)](https://tailwindcss.com/)
 
@@ -11,141 +14,88 @@
 
 ## 📖 The Problem
 
-The core issue African freelancers face isn't basic identity verification (KYC)—fintechs already use passports, BVN, and biometrics for that. **The real problem is proving the source of funds and income legitimacy.** 
+The core issue African freelancers face isn't basic identity verification (KYC)—fintechs already use passports, BVNs, and biometrics for that perfectly. **The real problem is proving the Source of Funds and Income Legitimacy.** 
 
-Irregular income patterns and geographic red flags often trigger risk models, leading to frozen accounts or rejected applications. When fintechs see unusual transaction volumes, they require Enhanced Due Diligence (EDD) to verify where the wealth/money is coming from.
+Because freelancers have highly irregular income patterns and operate from geographically red-flagged regions, legacy banking risk models view their inbound international payments as highly suspicious. This triggers aggressive **Enhanced Due Diligence (EDD)**. 
 
-**FreelanceProof** solves this exactly by acting as a strong, verifiable signal of professional legitimacy. By analyzing a developer's GitHub history, we calculate a comprehensive "Legitimacy Score" and issue a cryptographically signed Verification Token. When a fintech receives this token, they can instantly verify that the user is a demonstrably active, skilled professional—satisfying source-of-wealth/income checks and preventing unwarranted account freezes.
+When fintechs see these unusual transaction volumes, they freeze accounts and demand formal payslips, corporate employment letters, or wealthy bank statements—documents independent freelancers physically cannot produce. 
 
-## Features
+## 💡 The Solution
 
-### For Freelancers
-- **1-Click OAuth**: Connect your GitHub account securely.
-- **Legitimacy Scoring Engine**: Automatically calculates a score (out of 100) based on:
-  - Account Age & Experience
-  - Commit Consistency
-  - Repository Quality
-  - Tech Language Diversity
-  - Community Signals
-- **Verifiable Token Generation**: Generates an **RS256-signed JWT token** proving your legitimacy metrics.
-- **Beautiful Dashboard**: Visualize your score breakdown using sleek Recharts pie charts and progress bars.
+**FreelanceProof** acts as a cryptographically secure, verifiable signal of professional legitimacy. 
 
-### For Fintechs (Businesses)
-- **Sandbox Registration**: Register your business to obtain an API Key.
-- **Instant Credibility Reports**: Validate freelancer cryptographic tokens and instantly access detailed credibility reports via the UI portal or REST API.
+By analyzing a developer's GitHub history through OAuth, our engine calculates a deep **"Legitimacy Score"** based on real-world proof of work (account age, commit frequency, repository quality, technical diversity). We then issue a cryptographically signed Verification Token (JWT using RS256). 
+
+When a freelancer receives a payment, they simply hand their Token to the fintech. The fintech instantly queries our API, verifies the cryptography, and sees mathematical proof that the user is a demonstrably active, skilled professional earning a legitimate income—preventing unwarranted account freezes entirely.
 
 ---
 
-## Tech Stack
+## 🧑‍⚖️ Hackathon Judges Guide: How to Test
 
-- **Backend**: Node.js, Express, MongoDB & Mongoose, Custom RS256 JWT implementation.
-- **Frontend**: React (Vite), Tailwind CSS, React Router, Recharts, Lucide React icons.
+We have built a fully functional end-to-end flow. Here is how you can test the platform from both the perspective of a Freelancer and a Fintech Business:
 
----
+**1. The Freelancer Experience (Generating Proof)**
+- Go to the Live Demo at: [https://freelance-proof.vercel.app](https://freelance-proof.vercel.app)
+- Click **"Connect GitHub"**. 
+- You will be securely OAuth'd through GitHub and redirected to your generated Dashboard.
+- Watch as the backend live-calculates your Legitimacy Score out of 100 based on your repos.
+- Copy your generated **FreelanceProof Token** from the dashboard.
 
-## Getting Started
-
-### 1. Prerequisites
-- **Node.js** (v16 or newer)
-- **MongoDB** (Running locally on `mongodb://127.0.0.1:27017` or a cloud Atlas URI)
-- A GitHub account to create an OAuth App.
-
-### 2. GitHub OAuth Setup
-1. Go to your GitHub account settings -> **Developer settings** -> **OAuth Apps**.
-2. Create a new App with the following details:
-   - **Application name**: `FreelanceProof Local`
-   - **Homepage URL**: `http://localhost:3000`
-   - **Authorization callback URL**: `http://localhost:5000/api/auth/github/callback`
-3. Generate a **Client Secret** and save both your `Client ID` and `Client Secret`.
-
-### 3. Backend Setup
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file in the `backend` folder containing:
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://127.0.0.1:27017/freelanceproof
-   GITHUB_CLIENT_ID=your_github_client_id_here
-   GITHUB_CLIENT_SECRET=your_github_client_secret_here
-   ```
-4. Start the server:
-   ```bash
-   npm run dev
-   ```
-   *(Note: The server will automatically generate the cryptographic RSA `public.pem` and `private.pem` keys in a `/keys` folder on the first run!)*
-
-5. **(Optional)** Seed the database with mock Fintech API Keys to test the portal:
-   ```bash
-   node seed.js
-   ```
-
-### 4. Frontend Setup
-1. Open a new terminal and navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Vite dev server:
-   ```bash
-   npm run dev
-   ```
-4. Visit `http://localhost:3000` in your browser.
+**2. The Fintech Experience (Verifying Proof)**
+- Open a new tab and go to the **"Fintech Portal"** via the top navigation bar.
+- *Optional:* Register a mock business in the "Business Portal" to get an API Key, or just use the Sandbox UI.
+- Paste the Freelancer's token into the Verifier.
+- Click **"Verify Legitamacy"**.
+- View the instant, cryptographically verified Credibility Report proving the freelancer's technical background!
 
 ---
 
-## 🔌 API Documentation for Fintechs
+## 🏗️ Technical Architecture
 
-Fintechs can programmatically verify a freelancer's token by calling the public API. *(Requires an API key passed in the request body for the sandbox demo).*
+Our platform is engineered for security and scalability:
 
-#### `POST /api/business/register`
-Registers a business to obtain a sandbox API Key.
-- **Body**: `{ "business_name": "String", "email": "String" }`
-- **Returns**: `{ "api_key": "String", "business_name": "Stri", "message": "..." }`
-
-#### `POST /api/business/verify`
-Verifies a freelancer's signed JWT token.
-- **Body**: 
-  ```json
-  { 
-    "api_key": "YOUR_API_KEY", 
-    "token": "eyJhbGciOiJSUzI1NiIs..." 
-  }
-  ```
-- **Returns (Success 200)**: 
-  ```json
-  {
-    "valid": true,
-    "business_recipient": "Raenest",
-    "report": {
-      "github_username": "odey123",
-      "score": {
-        "overall": 75,
-        "experience": 20,
-        "consistency": 10,
-        "activity": 20,
-        "diversity": 10,
-        "community": 15
-      },
-      "verified_platforms": ["github"],
-      "issued_at": "2024-03-21T00:00:00.000Z"
-    }
-  }
-  ```
-- **Returns (Error 400)**: `{ "valid": false, "error": "Invalid or expired token" }`
+- **Frontend (`/frontend`)**: A blazing fast Single Page Application built with **React, Vite, and TailwindCSS**. We implemented a premium "glassmorphism" aesthetic with custom Recharts data visualization. Routing is handled entirely client-side, protected by a custom `vercel.json` configuration.
+- **Backend API (`/backend`)**: A robust **Node.js/Express** REST API connected to **MongoDB** (Atlas).
+- **Security & Cryptography**: We built a custom `crypto.service.js` which generates raw RSA Private/Public Keypairs. The "Freelancer Token" is a JWT signed using the `RS256` asymmetric algorithm. The backend verifies the token using the Public Key, ensuring it cannot be forged by malicious actors.
+- **GitHub Integration**: Direct OAuth 2.0 integration with the GitHub API to securely aggregate developer statistics without storing plain-text access tokens.
 
 ---
 
-## 🤝 Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## 💻 Running the Code Locally
 
-## 📝 License
-This project is licensed under the MIT License.
+If you prefer to run the codebase on your local machine:
+
+### 1. Backend Setup
+```bash
+cd backend
+npm install
+```
+Create a `.env` file in the `backend` folder:
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/freelanceproof
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+FRONTEND_URL=http://localhost:5173
+```
+Start the server:
+```bash
+npm run dev
+```
+
+### 2. Frontend Setup
+```bash
+cd frontend
+npm install
+```
+Create a `.env` file in the `frontend` folder:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+Start the Vite server:
+```bash
+npm run dev
+```
+
+---
+*Built with passion to empower African talent.*
