@@ -1,9 +1,9 @@
-# 🛡️ FreelanceProof (Hackathon Submission)
+# FreelanceProof (Hackathon Submission)
 
 > **"Your GitHub is Your Passport."** A full-stack verification platform empowering African freelancers to prove their professional legitimacy to fintechs, securely bypassing Enhanced Due Diligence (EDD) freezes.
 
-🚀 **Live Demo:** [https://freelance-proof.vercel.app](https://freelance-proof.vercel.app)
-⚙️ **Live API:** [https://freelance-proof.onrender.com](https://freelance-proof.onrender.com)
+**Live Demo:** [https://freelance-proof.vercel.app](https://freelance-proof.vercel.app)
+**Live API:** [https://freelance-proof.onrender.com](https://freelance-proof.onrender.com)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
@@ -12,7 +12,7 @@
 
 ---
 
-## 📖 The Problem
+## The Problem
 
 The core issue African freelancers face isn't basic identity verification (KYC)—fintechs already use passports, BVNs, and biometrics for that perfectly. **The real problem is proving the Source of Funds and Income Legitimacy.** 
 
@@ -20,7 +20,7 @@ Because freelancers have highly irregular income patterns and operate from geogr
 
 When fintechs see these unusual transaction volumes, they freeze accounts and demand formal payslips, corporate employment letters, or wealthy bank statements—documents independent freelancers physically cannot produce. 
 
-## 💡 The Solution
+## The Solution
 
 **FreelanceProof** acts as a cryptographically secure, verifiable signal of professional legitimacy. 
 
@@ -30,7 +30,7 @@ When a freelancer receives a payment, they simply hand their Token to the fintec
 
 ---
 
-## 🧑‍⚖️ Hackathon Judges Guide: How to Test
+## Hackathon Judges Guide: How to Test
 
 We have built a fully functional end-to-end flow. Here is how you can test the platform from both the perspective of a Freelancer and a Fintech Business:
 
@@ -38,30 +38,30 @@ We have built a fully functional end-to-end flow. Here is how you can test the p
 - Go to the Live Demo at: [https://freelance-proof.vercel.app](https://freelance-proof.vercel.app)
 - Click **"Connect GitHub"**. 
 - You will be securely OAuth'd through GitHub and redirected to your generated Dashboard.
-- Watch as the backend live-calculates your Legitimacy Score out of 100 based on your repos.
-- Copy your generated **FreelanceProof Token** from the dashboard.
+- Watch as the backend live-calculates your Legitimacy Score out of 100 based on your public repositories.
+- **Copy your generated FreelanceProof Token** from the dashboard (there is a convenient copy button next to the long cryptographic string).
 
-**2. The Fintech Experience (Verifying Proof)**
-- Open a new tab and go to the **"Fintech Portal"** via the top navigation bar.
-- *Optional:* Register a mock business in the "Business Portal" to get an API Key, or just use the Sandbox UI.
-- Paste the Freelancer's token into the Verifier.
-- Click **"Verify Legitamacy"**.
-- View the instant, cryptographically verified Credibility Report proving the freelancer's technical background!
+**2. The Fintech Experience (Verifying the Token)**
+- After copying your token from Step 1, open a new tab and go to the **"Fintech Portal"** (via the top navigation bar).
+- *Optional:* You can register a mock business using the "Business Registration" link to get an API Key, but for Sandbox testing, you can use the built-in Sandbox mode.
+- **Paste the Freelancer's Token** you copied in Step 1 into the "Enter Freelancer Token" input box on the Verifier page.
+- Click **"Verify Authenticity"**.
+- The backend will cryptographically decode the RSA signature and instantly generate a beautiful **Credibility Report** on your screen, proving the freelancer's technical background, score breakdown, and legitimacy!
 
 ---
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 
 Our platform is engineered for security and scalability:
 
-- **Frontend (`/frontend`)**: A blazing fast Single Page Application built with **React, Vite, and TailwindCSS**. We implemented a premium "glassmorphism" aesthetic with custom Recharts data visualization. Routing is handled entirely client-side, protected by a custom `vercel.json` configuration.
+- **Frontend (`/frontend`)**: A fast Single Page Application built with **React, Vite, and TailwindCSS**. We implemented a premium "glassmorphism" aesthetic with custom Recharts data visualization. Routing is handled entirely client-side, protected by a custom `vercel.json` configuration.
 - **Backend API (`/backend`)**: A robust **Node.js/Express** REST API connected to **MongoDB** (Atlas).
 - **Security & Cryptography**: We built a custom `crypto.service.js` which generates raw RSA Private/Public Keypairs. The "Freelancer Token" is a JWT signed using the `RS256` asymmetric algorithm. The backend verifies the token using the Public Key, ensuring it cannot be forged by malicious actors.
 - **GitHub Integration**: Direct OAuth 2.0 integration with the GitHub API to securely aggregate developer statistics without storing plain-text access tokens.
 
 ---
 
-## 💻 Running the Code Locally
+## Running the Code Locally
 
 If you prefer to run the codebase on your local machine:
 
